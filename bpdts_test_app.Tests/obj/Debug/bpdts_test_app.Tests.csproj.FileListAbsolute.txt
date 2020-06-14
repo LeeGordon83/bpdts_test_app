@@ -1,0 +1,2 @@
+C:\Users\ddts-220604\source\repos\bpdts_test_app\bpdts_test_app.Tests\obj\Debug\bpdts_test_app.Tests.csprojAssemblyReference.cache
+C:\Users\ddts-220604\source\repos\bpdts_test_app\bpdts_test_app.Tests\obj\Debug\bpdts_test_app.Tests.csproj.CoreCompileInputs.cache

@@ -1,0 +1,35 @@
+﻿@model List<bpdts_test_app.Models.User>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>User Search Application</h1>
+    <p class="lead">User Search Application allows you to search for users living within or close to a specified city</p>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.DisplayFor(modelItem => item.Fullname)
+                </div>
+                <div class="panel-body">
+                    @if (item.distance != 0)
+                    {
+                        @Html.DisplayNameFor(modelItem => item.distance);
+                        <div> - </div>
+                        @Html.DisplayFor(modelItem => item.distance);
+                    }
+                    else
+                    {
+                        <p>LONDON RESIDENT</p>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
