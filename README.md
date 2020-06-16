@@ -24,8 +24,9 @@ The following addittional non-standard Nuget packages were utilised: - <br/>
 - Web application will open in selected browser and navigate to localhost.
 
 ## Run tests
-Unit tests are written in NUnit utilising Moq. <br/>
-Run all tests by selecting Test dropdown then Run All Tests in Visual Studio.
+- Unit tests are written in NUnit utilising Moq.
+- Run all tests by selecting Test dropdown then Run All Tests in Visual Studio.
+- 95.51% test code coverage
 
 ## License
 This project is licensed under the MIT License - see the LICENSE.md file for details.
