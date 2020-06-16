@@ -12,27 +12,30 @@ namespace bpdts_test_app.Services
 {
     public class APIService : IAPIService
     {
-
-        public APIService()
+        private readonly HttpClient httpClient;
+        public APIService(HttpClient httpClient)
         {
+           this.httpClient = httpClient;
 
         }
-        public async Task<List<User>> GetUserData(string parameter)
+
+
+        public async Task<List<User>> GetUserData(string searchstring)
         {
             string configBase = ConfigurationManager.AppSettings["APILocation"];
             List<User> userList = new List<User>();
-            
+
             try
             {
-                using (var httpClient = new HttpClient())
-                {
-                    using (var response = await httpClient.GetAsync(string.Format("{0}/{1}", configBase, parameter)))
-                    {
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        userList = JsonConvert.DeserializeObject<List<User>>(apiResponse);
-                    }
-                }
+                    var response = await httpClient.GetAsync(string.Format("{0}/{1}", configBase, searchstring));
+                        
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    List<User> usersFound = JsonConvert.DeserializeObject<List<User>>(apiResponse);
+                    userList.AddRange(usersFound);
+                
             }
+
+
             catch (Exception ex)
             {
                 Console.WriteLine("bpdts API unavailable: {0}", ex);

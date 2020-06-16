@@ -5,6 +5,7 @@ using bpdts_test_app.Services.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -16,27 +17,38 @@ namespace bpdts_test_app.Controllers
         IAPIService apiService;
         IUserFilterService userFilterService;
         IDistanceCalculationService distanceCalculationService;
+        private static HttpClient Client = new HttpClient();
 
         public HomeController()
         {
-            apiService = new APIService();
+            apiService = new APIService(Client);
             distanceCalculationService = new DistanceCalculationService();
             userFilterService = new UserFilterService(apiService, distanceCalculationService);
         }
 
-        public HomeController(IAPIService apiService, IUserFilterService peopleFilterService, IDistanceCalculationService distanceCalculationService)
+        public HomeController(IAPIService apiService, IUserFilterService userFilterService, IDistanceCalculationService distanceCalculationService)
         {
             this.apiService = apiService;
-            this.userFilterService = peopleFilterService;
+            this.userFilterService = userFilterService;
             this.distanceCalculationService = distanceCalculationService;
         }
-        public ActionResult Index(string city, int? distance)
+        public ActionResult Index(string city = "London", int? distance = 50)
         {
 
+            ViewBag.City = city;
+            ViewBag.Distance = distance;
 
-            List<User> userList = userFilterService.FilterUsers(city, distance);
+            try
+            {
 
-            return View(userList);
+                List<User> userList = userFilterService.FilterUsers(city, distance);
+
+                return View(userList);
+            }
+            catch (Exception Ex)
+            {
+                return View("Error");
+            }
         }
 
     }

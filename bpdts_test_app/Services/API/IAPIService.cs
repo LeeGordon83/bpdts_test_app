@@ -6,6 +6,6 @@ namespace bpdts_test_app.Services
 {
     public interface IAPIService
     {
-        Task<List<User>> GetUserData(string parameter);
+        Task<List<User>> GetUserData(string searchstring);
     }
 }

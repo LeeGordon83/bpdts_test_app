@@ -1,30 +1,43 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Web;
 
 namespace bpdts_test_app.Models
 {
+
+    [ExcludeFromCodeCoverage]
     public class User
     {
-        public int id { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
 
-        public string first_name { get; set; }
+        [JsonProperty("first_name")]
+        public string FirstName { get; set; }
 
-        public string last_name { get; set; }
+        [JsonProperty("last_name")]
+        public string LastName { get; set; }
 
-        public string email { get; set; }
+        [JsonProperty("email")]
+        public string Email { get; set; }
 
-        public string ip_address { get; set; }
+        [JsonProperty("ip_address")]
+        public string IpAddress { get; set; }
 
-        public double latitude { get; set; }
+        [JsonProperty("latitude")]
+        public double Latitude { get; set; }
 
-        public double longitude { get; set; }
+        [JsonProperty("longitude")]
+        public double Longitude { get; set; }
 
-        [Display(Name = "Distance")]
-        public double distance { get; set; }
+        [Display(Name = "Distance in Miles")]
+        [DisplayFormat(DataFormatString = "{0:n2}")]
+        public double Distance { get; set; }
 
-        public string Fullname { get { return string.Format("{0} {1}", first_name, last_name); } }
+        [Display(Name = "Full Name")]
+        public string Fullname { get { return string.Format("{0} {1}", FirstName, LastName); } }
     }
 }

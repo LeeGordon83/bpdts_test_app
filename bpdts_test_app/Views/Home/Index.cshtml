@@ -8,28 +8,55 @@
     <h1>User Search Application</h1>
     <p class="lead">User Search Application allows you to search for users living within or close to a specified city</p>
 </div>
-
 <div class="row">
-    @foreach (var item in Model)
+    @using (Html.BeginForm("Index", "Home"))
     {
         <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    @Html.DisplayFor(modelItem => item.Fullname)
-                </div>
-                <div class="panel-body">
-                    @if (item.distance != 0)
-                    {
-                        @Html.DisplayNameFor(modelItem => item.distance);
-                        <div> - </div>
-                        @Html.DisplayFor(modelItem => item.distance);
-                    }
-                    else
-                    {
-                        <p>LONDON RESIDENT</p>
-                    }
-                </div>
-            </div>
+            <label class="form-label" for="select-box">City: - </label>
+            <select class="form-control" id="city" name="city">
+                <option value="London" selected="selected">London</option>
+            </select>
         </div>
+        <div class="col-md-4">
+            <label class="form-label" for="select-box">Distance (Miles): - </label>
+            <select class="form-control" id="distance" name="distance">
+                <option value="50" selected="selected">50</option>
+                <option value="25">25</option>
+                <option value="10">10 </option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="col-md-4" style="padding-top:30px"><input class="button" type="submit" value="Search" /></div>
+
     }
 </div>
+<div class="row col-md-12" style="text-align:center; padding-bottom:30px">
+    <h2>City : @ViewBag.City</h2>
+    <h2>Distance : @ViewBag.Distance</h2>
+</div>
+<br />
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        @Html.DisplayFor(modelItem => item.Fullname)
+                    </div>
+                    <div class="panel-body">
+
+                        @if (item.Distance != 0)
+                        {
+                            @Html.DisplayNameFor(modelItem => item.Distance);
+                            <text>-</text>
+                            @Html.DisplayFor(modelItem => item.Distance);
+                        }
+                        else
+                        {
+                        <p>@ViewBag.City Resident</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
