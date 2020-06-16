@@ -3,7 +3,7 @@
 >"Build an API which calls this API, and returns people who are listed as either living in London, or whose current coordinates are within 50 miles of London. Push the answer to Github, and send us a link."
 
 ## Function
-Application allows a user to call and API from a web applciation front end. Data returned will display all users that live within London or withing a 50 mile radius of London by default (the distance can be altered). THe application has been built to be flexible to allow for future development of a city selection.
+A C# MVC web applcation which allows a user to call an API from a front end. Data returned will display all users that live within London or withing a 50 mile radius of London by default (the distance can be altered). THe application has been built to be flexible to allow for future development of a city selection.
 
 ## Prerequisites
 - Visual Studio
